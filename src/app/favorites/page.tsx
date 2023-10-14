@@ -4,6 +4,7 @@ import { SearchResult } from "../gallery/page";
 
 
 import cloudinary from "cloudinary"
+import FavoriteList from "./favorites-lists";
 
 
 
@@ -24,18 +25,8 @@ export default async function GalleryPage(){
             <h1 className="text-4xl font-bold">Favorites</h1>
           
         </div>
-        <div className="grid grid-cols-4 gap-4">
-        {results.resources.map(result=> (
-          <CloudinaryImage  
-          path="favorites"
-          key={result.public_id}
-          imageData={result}
-          width="400"
-          height="300"
-          alt="Description of my image"
-        />
-          ))}
-        </div>
+        <FavoriteList initialResources={results.resources}/>
+  
         </div>
     </section>
     )
