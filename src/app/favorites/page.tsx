@@ -8,7 +8,7 @@ import FavoriteList from "./favorites-lists";
 
 
 
-export default async function GalleryPage(){
+export default async function FavoritesPage(){
    const results = (await cloudinary.v2.search
     .expression('resource_type:image AND tags=favorite')
     .sort_by('created_at','desc')

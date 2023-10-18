@@ -8,24 +8,24 @@ import FullHeart from "@/components/icons/full-heart";
 import { ImageMenu } from './image-menu';
 
 export function CloudinaryImage(props:{
-    imageData: SearchResult; 
+    imagedata: SearchResult; 
      onUnheart?: (unheartedResource: SearchResult) => void;
     }
     & Omit<CldImageProps, "src">
     ){
     const [transition, startTransition] = useTransition();
-    const {imageData, onUnheart} = props;
-    const [isFavorited, setisFavorited] = useState(imageData.tags.includes("favorite"))
+    const {imagedata, onUnheart} = props;
+    const [isFavorited, setisFavorited] = useState(imagedata.tags.includes("favorite"))
     return (
         <div className="relative">
-            <CldImage {...props} src={imageData.public_id} />
+            <CldImage {...props} src={imagedata.public_id} />
            {isFavorited ? 
              <FullHeart className="absolute top-2 left-2 hover:text-white text-red-500 cursor-pointer" 
              onClick={()=>{
-                onUnheart?.(imageData)
+                onUnheart?.(imagedata)
                 setisFavorited(false)
                  startTransition(()=>{
-                     setAsFavoriteAction(imageData.public_id, false)
+                     setAsFavoriteAction(imagedata.public_id, false)
                  });
              }} />
            : 
@@ -34,11 +34,11 @@ export function CloudinaryImage(props:{
             setisFavorited(true)
 
                startTransition(()=>{
-                   setAsFavoriteAction(imageData.public_id, true)
+                   setAsFavoriteAction(imagedata.public_id, true)
                });
            }}/>
            }
-           <ImageMenu/>
+           <ImageMenu image={imagedata}/>
         </div>
     )
 }

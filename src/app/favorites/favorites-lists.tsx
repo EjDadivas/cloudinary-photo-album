@@ -11,14 +11,14 @@ export default function FavoriteList({initialResources}: {initialResources: Sear
 
     useEffect(()=>{
       setResources(initialResources)
-    }, initialResources)
+    }, [initialResources])
     return (
-      <ImageGrid images={resources} getImage={(imageData: SearchResult)=>{
+      <ImageGrid images={resources} getImage={(imagedata: SearchResult)=>{
         return (
           <CloudinaryImage  
           
-          key={imageData.public_id}
-          imageData={imageData}
+          key={imagedata.public_id}
+          imagedata={imagedata}
           width="400"
           height="300"
           alt="Description of my image"
